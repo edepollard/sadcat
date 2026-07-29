@@ -1,15 +1,14 @@
 
 ## Install
-see `INSTALL.md` for installation instructions.
+see [INSTALL.md](INSTALL.md) for installation instructions.
 
 ### Command Line Options
   - `-q, --quiet`  Remove test headers when running all.
   - `--help`       Show this message and exit.
 
 ### Examples
-```bash
-
 # display a sad cat
+```bash
 ?> run sc
             ＿＿
           /＞ 　`フ
@@ -21,14 +20,16 @@ see `INSTALL.md` for installation instructions.
 ／￣|　|　|　|
 | (￣ヽヽ_)'_)
 ＼二つ
-
+```
 
 # display attribution
+```
 ?> run sc attribution
 ASCII Art: Sad Cat
 Artist: Unknown / Origin: Internet (Source unverified)
-
+```
 # show all available arguments
+```
 ?> run sc list_tests
 Available Tests: all, text, as_str, as_str_w_title, as_list, as_list_w_title, license, license_text, attribution, height, width
 ```
