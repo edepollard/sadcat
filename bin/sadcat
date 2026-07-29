@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+from sadcat.sadcat import SCTests
+import click
+
+@click.command()
+@click.option('-q','--quiet',is_flag=True,
+               help="Remove test headers when running all.")
+@click.argument('test', type=click.Choice(SCTests.all_arguments()),
+                        default='text')
+def run(**kwargs):
+    """
+       Display a Sad Cat or Run tests for SadCat()
+
+\b
+Arguments:
+  text            [DEFAULT] print a sad cat
+  title           print a sad cat with title
+  list_tests      list all available tests
+  all             run all tests
+  as_str          same as 'text'
+  as_str_w_title  same as 'title'
+  as_list         dump python list of sad cat text lines
+  as_list_w_title dump python list of sad cat text lines with title
+  license         display license name
+  license_text    display license
+  attribution     display ASCII Art source (or lack of)
+  height          display sad cat height
+  width           display sad cat max width
+"""
+    SCTests().run_tests(kwargs)
+
+if __name__ == '__main__':
+    run()
+
+
