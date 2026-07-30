@@ -1,24 +1,34 @@
 #!/usr/bin/env python
-from sadcat import SCTests
+from sadcat import SadCat, SCTests
 import click
 
-@click.command()
+@click.group(invoke_without_command=True)
+@click.option('-t','--title',is_flag=True,
+               help="Add title to Sad Cat")
+@click.pass_context
+def sc(ctx, **kwargs):
+    """ Display a Sad Cat """
+    if ctx.invoked_subcommand is None:
+        if kwargs['title']:
+            print(SadCat().as_str_w_title)
+        else:
+            print(SadCat().as_str)
+
+@sc.command()
+@click.argument('test', type=click.Choice(SCTests.all_arguments()),
+                        default='as_str')
 @click.option('-q','--quiet',is_flag=True,
                help="Remove test headers when running all.")
-@click.argument('test', type=click.Choice(SCTests.all_arguments()),
-                        default='text')
-def run(**kwargs):
+def test(**kwargs):
     """
-       Display a Sad Cat or Run tests for SadCat()
+       Run tests for SadCat()
 
 \b
 Arguments:
-  text            [DEFAULT] print a sad cat
-  title           print a sad cat with title
   list_tests      list all available tests
   all             run all tests
-  as_str          same as 'text'
-  as_str_w_title  same as 'title'
+  as_str          [DEFAULT] display a text sad cat
+  as_str_w_title  display a text sad cat with title
   as_list         dump python list of sad cat text lines
   as_list_w_title dump python list of sad cat text lines with title
   license         display license name
@@ -30,6 +40,6 @@ Arguments:
     SCTests().run_tests(kwargs)
 
 if __name__ == '__main__':
-    run()
+    sc()
 
 

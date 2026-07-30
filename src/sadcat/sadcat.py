@@ -21,8 +21,6 @@ class SCTests():
            self._tests = {
                             'all':None,
                             'list_tests':None,
-                            'title':None,
-                            'text':None,
                             'as_str': self.sc.as_str,
                             'as_str_w_title': self.sc.as_str_w_title,
                             'as_list': self.sc.as_list,
@@ -39,7 +37,7 @@ class SCTests():
     def all_tests_list(self):
         if '_all_tests_list' not in self.__dict__:
             self._all_tests_list = [t for t in self.tests\
-                                      if t not in ['list_tests','title']]
+                                      if t not in ['list_tests']]
         return self._all_tests_list
 
     @property
@@ -72,10 +70,6 @@ class SCTests():
                     self._pretty_print_list(self.tests[t])
                 else:
                     print(f"{self.tests[t]}\n\n")
-        elif test == 'title':
-            print(self.tests['as_str_w_title'])
-        elif test == 'text':
-            print(self.tests['as_str'])
         elif test in ['as_list','as_list_w_title']:
             self._pretty_print_list(self.tests[test])
         else:
