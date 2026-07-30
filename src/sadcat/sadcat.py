@@ -4,8 +4,9 @@
 # Author: Ed Pollard
 # Purpose: Display an ASCII Art Sad Cat
 # License: MIT
+# ASCII Art Attribution: Artist: Unknown / Origin: Internet (Source unverified)
 #
-
+#
 
 class SCTests():
     @property
@@ -51,6 +52,12 @@ class SCTests():
     def all_arguments(cls):
         return [t for t in cls().tests]
 
+    def _pretty_print_list(self, tlist, indent=4):
+        print("[")
+        for l in tlist:
+            print(f"{' '*indent}\"{l}\",")
+        print("]")
+
     def run_tests(self, args):
         test = args['test']
         quiet = args['quiet']
@@ -62,10 +69,7 @@ class SCTests():
                 if not quiet:
                     print(f"Test: {t}")
                 if t in ['as_list','as_list_w_title']:
-                    print("[")
-                    for l in self.tests[t]:
-                        print(f"    \"{l}\",")
-                    print("]")
+                    self._pretty_print_list(self.tests[t])
                 else:
                     print(f"{self.tests[t]}\n\n")
         elif test == 'title':
@@ -73,16 +77,36 @@ class SCTests():
         elif test == 'text':
             print(self.tests['as_str'])
         elif test in ['as_list','as_list_w_title']:
-            print("[")
-            for l in self.tests[test]:
-                print(f"    \"{l}\",")
-            print("]")
+            self._pretty_print_list(self.tests[test])
         else:
             print(self.tests[test])
 
 
 
 class SadCat:
+
+    def __init__(self):
+        sc = []
+        sc.append("            ＿＿   ")
+        sc.append("          /＞ 　`フ")
+        sc.append("          | _   _l ")
+        sc.append("       ／` ミ＿xノ ")
+        sc.append("      /　　 　|    ")
+        sc.append("     / ヽ　　 ﾉ    ")
+        sc.append("    │　|　|　|     ")
+        sc.append("／￣|　|　|　|     ")
+        sc.append("| (￣ヽヽ_)'_)     ")
+        self.sadcat = {
+                        'cat' :sc,
+                        'tail':"＼二つ             ",
+                        'tail_title':"＼二つ  Sad Cat    ",
+                        'attribution':"ASCII Art: Sad Cat\n"+\
+                                      "Artist: Unknown / Origin: "+\
+                                      "Internet (Source unverified)",
+                        'license':"MIT (python source only, "+
+                                  "no claim made for ASCII Art)",
+                      }
+
 
     def __call__(self):
         return self.as_list
@@ -94,39 +118,20 @@ class SadCat:
         return f"{self.__class__.__name__}()"
 
     @property
-    def features(self):
-        return [f for f in dir(self) if callable(getattr(self,f)) and not\
-                                        f.startswith('_')]
-
-    @property
     def attribution(self):
-        return "ASCII Art: Sad Cat\n"+\
-               "Artist: Unknown / Origin: Internet (Source unverified)"
+        return self.sadcat['attribution']
 
     @property
     def license(self):
-        return "MIT (python source only, no claim made for ASCII Art)"
+        return self.sadcat['license']
 
     @property
     def as_list(self):
-        sc = []
-        sc.append("            ＿＿   ")
-        sc.append("          /＞ 　`フ")
-        sc.append("          | _   _l ")
-        sc.append("       ／` ミ＿xノ ")
-        sc.append("      /　　 　|    ")
-        sc.append("     / ヽ　　 ﾉ    ")
-        sc.append("    │　|　|　|     ")
-        sc.append("／￣|　|　|　|     ")
-        sc.append("| (￣ヽヽ_)'_)     ")
-        sc.append("＼二つ             ")
-        return sc
+        return self.sadcat['cat']+[self.sadcat['tail']]
 
     @property
     def as_list_w_title(self):
-        sc = self.as_list[:-1]
-        sc.append("＼二つ  Sad Cat    ")
-        return sc
+        return self.sadcat['cat']+[self.sadcat['tail_title']]
 
     @property
     def as_str(self):
