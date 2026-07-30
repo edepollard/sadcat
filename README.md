@@ -8,7 +8,7 @@ see [INSTALL.md](INSTALL.md) for installation instructions.
 
 ### Examples
 # display a sad cat
-```bash
+```
 ?> run sc
             ＿＿
           /＞ 　`フ
