@@ -9,7 +9,7 @@ see [INSTALL.md](INSTALL.md) for installation instructions.
 ### Examples
 # display a sad cat
 ```
-?> run sc
+?> run sadcat
             ＿＿
           /＞ 　`フ
           | _   _l
@@ -24,13 +24,13 @@ see [INSTALL.md](INSTALL.md) for installation instructions.
 
 # display attribution
 ```
-?> run sc attribution
+?> run sadcat attribution
 ASCII Art: Sad Cat
 Artist: Unknown / Origin: Internet (Source unverified)
 ```
 # show all available arguments
 ```
-?> run sc list_tests
+?> run sadcat list_tests
 Available Tests: all, text, as_str, as_str_w_title, as_list, as_list_w_title, license, license_text, attribution, height, width
 ```
 
