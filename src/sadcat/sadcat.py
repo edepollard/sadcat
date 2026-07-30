@@ -61,11 +61,22 @@ class SCTests():
             for t in self.all_tests:
                 if not quiet:
                     print(f"Test: {t}")
-                print(f"{self.tests[t]}\n\n")
+                if t in ['as_list','as_list_w_title']:
+                    print("[")
+                    for l in self.tests[t]:
+                        print(f"    \"{l}\",")
+                    print("]")
+                else:
+                    print(f"{self.tests[t]}\n\n")
         elif test == 'title':
             print(self.tests['as_str_w_title'])
         elif test == 'text':
             print(self.tests['as_str'])
+        elif test in ['as_list','as_list_w_title']:
+            print("[")
+            for l in self.tests[test]:
+                print(f"    \"{l}\",")
+            print("]")
         else:
             print(self.tests[test])
 
